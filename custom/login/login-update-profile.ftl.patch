@@ -1,0 +1,52 @@
+--- custom/login/login-update-profile.ftl	2022-02-17 19:25:37.156309500 +0100
++++ custom/login/login-update-profile-patched.ftl	2022-02-17 19:26:57.016309500 +0100
+@@ -1,5 +1,5 @@
+ <#import "template.ftl" as layout>
+-<@layout.registrationLayout displayMessage=!messagesPerField.existsError('username','email','firstName','lastName'); section>
++<@layout.registrationLayout displayMessage=!messagesPerField.existsError('username','email'); section>
+     <#if section = "header">
+         ${msg("loginProfileTitle")}
+     <#elseif section = "form">
+@@ -39,42 +39,6 @@
+                         </span>
+                     </#if>
+                 </div>
+-            </div>
+-
+-            <div class="${properties.kcFormGroupClass!}">
+-                <div class="${properties.kcLabelWrapperClass!}">
+-                    <label for="firstName" class="${properties.kcLabelClass!}">${msg("firstName")}</label>
+-                </div>
+-                <div class="${properties.kcInputWrapperClass!}">
+-                    <input type="text" id="firstName" name="firstName" value="${(user.firstName!'')}"
+-                           class="${properties.kcInputClass!}"
+-                           aria-invalid="<#if messagesPerField.existsError('firstName')>true</#if>"
+-                    />
+-
+-                    <#if messagesPerField.existsError('firstName')>
+-                        <span id="input-error-firstname" class="${properties.kcInputErrorMessageClass!}" aria-live="polite">
+-                            ${kcSanitize(messagesPerField.get('firstName'))?no_esc}
+-                        </span>
+-                    </#if>
+-                </div>
+-            </div>
+-
+-            <div class="${properties.kcFormGroupClass!}">
+-                <div class="${properties.kcLabelWrapperClass!}">
+-                    <label for="lastName" class="${properties.kcLabelClass!}">${msg("lastName")}</label>
+-                </div>
+-                <div class="${properties.kcInputWrapperClass!}">
+-                    <input type="text" id="lastName" name="lastName" value="${(user.lastName!'')}"
+-                           class="${properties.kcInputClass!}"
+-                           aria-invalid="<#if messagesPerField.existsError('lastName')>true</#if>"
+-                    />
+-
+-                    <#if messagesPerField.existsError('lastName')>
+-                        <span id="input-error-lastname" class="${properties.kcInputErrorMessageClass!}" aria-live="polite">
+-                            ${kcSanitize(messagesPerField.get('lastName'))?no_esc}
+-                        </span>
+-                    </#if>
+-                </div>
+             </div>
+ 
+             <div class="${properties.kcFormGroupClass!}">
