@@ -1,7 +1,8 @@
-FROM node:17
+FROM node:17-alpine
 ARG KEYCLOAK_VERSION=17.0.0
 
-RUN git clone https://github.com/keycloak/keycloak.git /keycloak
+RUN apk add git patch &&\
+    git clone https://github.com/keycloak/keycloak.git /keycloak
 WORKDIR /keycloak
 RUN git fetch origin tag $KEYCLOAK_VERSION --no-tags && \
     git checkout
@@ -22,4 +23,6 @@ RUN npm install && npm run build
 
 WORKDIR /
 
-RUN cp -r /keycloak/themes/src/main/resources/theme/keycloak.v2/account/resources /custom/account
+RUN cp -r /keycloak/themes/src/main/resources/theme/keycloak.v2/account/resources /custom/account && \
+    rm -rf /keycloak && \
+    apk del git patch
