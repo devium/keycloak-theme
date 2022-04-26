@@ -1,5 +1,5 @@
 FROM node:17-alpine
-ARG KEYCLOAK_VERSION=17.0.0
+ARG KEYCLOAK_VERSION=18.0.0
 
 COPY custom /custom
 
